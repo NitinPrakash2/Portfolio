@@ -1,114 +1,118 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { motion } from 'framer-motion';
+import { memo } from 'react';
 
 const experiences = [
-  {
-    id: 1,
-    title: 'Frontend Developer',
-    company: 'Tech Solutions Inc.',
-    period: '2023 - Present',
-    technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+  { 
+    id: 1, 
+    title: '💻 MERN Stack Developer (Self Projects)', 
+    company: '2024–Present', 
+    period: '2024–Present',
+    description: [
+      'Building full-stack web applications using React, Node.js, Express, and MongoDB.',
+      'Gained experience with API integration, frontend–backend connectivity, and responsive UI.',
+      'Continuously learning and implementing new technologies to improve performance and design.'
+    ],
+    technologies: ['React', 'Node.js', 'Express', 'MongoDB']
   },
-  {
-    id: 2,
-    title: 'Web Developer Intern',
-    company: 'Digital Agency',
-    period: '2022 - 2023',
-    technologies: ['JavaScript', 'HTML', 'CSS', 'GSAP'],
-  },
-  {
-    id: 3,
-    title: 'Freelance Developer',
-    company: 'Self-Employed',
-    period: '2021 - 2022',
-    technologies: ['WordPress', 'PHP', 'JavaScript'],
+  { 
+    id: 2, 
+    title: '☕ Java Developer (Learning Phase)', 
+    company: 'Learning Phase', 
+    period: 'Ongoing',
+    description: [
+      'Learning Java with a strong focus on Data Structures, Algorithms, and OOPs concepts.',
+      'Practicing coding challenges to strengthen logical thinking and backend fundamentals.'
+    ],
+    technologies: ['Java', 'DSA', 'OOPs']
   },
 ];
 
-export default function Experience() {
-  const titleRef = useRef(null);
-  const timelineRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      if (titleRef.current) {
-        gsap.fromTo(
-          titleRef.current,
-          { opacity: 0, y: 50 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: titleRef.current,
-              start: 'top 80%',
-              once: true,
-            },
-          }
-        );
-      }
-
-      if (timelineRef.current) {
-        const blocks = timelineRef.current.querySelectorAll('.experience-block');
-        gsap.fromTo(
-          blocks,
-          { opacity: 0, x: -50 },
-          {
-            opacity: 1,
-            x: 0,
-            stagger: 0.3,
-            duration: 0.8,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: timelineRef.current,
-              start: 'top 80%',
-              once: true,
-            },
-          }
-        );
-      }
-    });
-
-    return () => ctx.revert();
-  }, []);
+const Experience = memo(function Experience() {
+  const sectionRef = useScrollAnimation({ stagger: 0.2, y: 30 });
 
   return (
-    <section data-aos="fade-up" className="bg-black py-16 sm:py-20 px-6 sm:px-8">
-      <div className="max-w-6xl mx-auto">
-        <h2
-          ref={titleRef}
-          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12 sm:mb-16"
+    <section ref={sectionRef} className="bg-transparent py-16 sm:py-20 px-6 sm:px-8 relative overflow-hidden">
+      <motion.div 
+        className="absolute top-1/2 right-0 w-96 h-96 bg-purple-600 rounded-full blur-[120px] opacity-10"
+        animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.15, 0.1] }}
+        transition={{ duration: 4, repeat: Infinity }}
+      />
+      
+      <div className="max-w-6xl mx-auto relative z-10">
+        <motion.h2 
+          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12 animate gpu-accelerated"
+          whileInView={{ opacity: [0, 1], x: [-50, 0] }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.6 }}
         >
           Experience
-        </h2>
-
-        <div ref={timelineRef} className="border-l-2 border-gray-700 pl-6 sm:pl-8 space-y-10 sm:space-y-12">
-          {experiences.map((exp) => (
-            <div key={exp.id} className="experience-block relative">
-              <div className="absolute -left-[29px] sm:-left-[37px] top-2 w-3 h-3 sm:w-4 sm:h-4 bg-purple-500 rounded-full border-4 border-black" />
-              
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2">{exp.title}</h3>
-              <p className="text-lg sm:text-xl text-gray-400 mb-1">{exp.company}</p>
+        </motion.h2>
+        <div className="border-l-2 border-gray-700 pl-6 sm:pl-8 space-y-10 sm:space-y-12 relative">
+          <motion.div 
+            className="absolute left-0 top-0 w-0.5 bg-gradient-to-b from-purple-500 to-transparent gpu-accelerated"
+            initial={{ height: 0 }}
+            whileInView={{ height: '100%' }}
+            viewport={{ once: false }}
+            transition={{ duration: 1.5, ease: 'easeOut' }}
+          />
+          
+          {experiences.map((exp, i) => (
+            <motion.div 
+              key={exp.id} 
+              className="experience-block relative animate gpu-accelerated"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false }}
+              transition={{ delay: i * 0.2, duration: 0.5 }}
+              whileHover={{ x: 10 }}
+            >
+              <motion.div 
+                className="absolute -left-[29px] sm:-left-[37px] top-2 w-3 h-3 sm:w-4 sm:h-4 bg-purple-500 rounded-full border-4 border-black gpu-accelerated"
+                initial={{ scale: 0, boxShadow: '0 0 0 0 rgba(168, 85, 247, 0.7)' }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: false }}
+                animate={{ boxShadow: ['0 0 0 0 rgba(168, 85, 247, 0.7)', '0 0 0 10px rgba(168, 85, 247, 0)'] }}
+                transition={{ 
+                  scale: { delay: i * 0.2 + 0.3, type: 'spring', stiffness: 200 },
+                  boxShadow: { duration: 2, repeat: Infinity }
+                }}
+              />
+              <motion.h3 
+                className="text-2xl sm:text-3xl font-bold text-white mb-2"
+                whileHover={{ color: '#a855f7' }}
+              >
+                {exp.title}
+              </motion.h3>
               <p className="text-sm text-gray-500 mb-4">{exp.period}</p>
-              
+              {exp.description && (
+                <ul className="text-gray-300 mb-4 space-y-2">
+                  {exp.description.map((desc, idx) => (
+                    <li key={idx} className="text-sm leading-relaxed">• {desc}</li>
+                  ))}
+                </ul>
+              )}
               <div className="flex flex-wrap gap-2">
-                {exp.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-xs"
+                {exp.technologies.map((tech, j) => (
+                  <motion.span 
+                    key={tech} 
+                    className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-xs cursor-pointer gpu-accelerated"
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: false }}
+                    transition={{ delay: i * 0.2 + j * 0.1 + 0.5 }}
+                    whileHover={{ scale: 1.1, backgroundColor: '#374151' }}
                   >
                     {tech}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
     </section>
   );
-}
+});
+
+export default Experience;
