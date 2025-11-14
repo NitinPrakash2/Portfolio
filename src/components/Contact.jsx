@@ -5,12 +5,12 @@ import { memo } from 'react';
 const CONTACT_LINKS = [
   { href: 'mailto:nitin@example.com', label: 'Email', primary: true },
   { href: 'https://linkedin.com', label: 'LinkedIn' },
-  { href: 'https://github.com', label: 'GitHub' },
+  { href: 'https://github.com/NitinPrakash2', label: 'GitHub' },
 ];
 
 const SOCIAL_LINKS = [
   { href: 'https://linkedin.com', label: 'LinkedIn' },
-  { href: 'https://github.com', label: 'GitHub' },
+  { href: 'https://github.com/NitinPrakash2', label: 'GitHub' },
   { href: 'https://twitter.com', label: 'Twitter' },
 ];
 
@@ -31,7 +31,7 @@ const Contact = memo(function Contact() {
             className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 animate gpu-accelerated"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
             Let's Work Together
@@ -40,7 +40,7 @@ const Contact = memo(function Contact() {
             className="text-lg sm:text-xl text-gray-400 mb-10 sm:mb-12 animate gpu-accelerated"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             Have a project in mind or just want to say hi?
@@ -56,7 +56,7 @@ const Contact = memo(function Contact() {
                 }`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 transition={{ delay: i * 0.1 + 0.3, duration: 0.5 }}
                 whileHover={{ 
                   scale: 1.05, 
@@ -77,7 +77,7 @@ const Contact = memo(function Contact() {
           className="flex justify-center gap-6 mb-4 gpu-accelerated"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: false }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
           {SOCIAL_LINKS.map((link, i) => (
@@ -89,7 +89,7 @@ const Contact = memo(function Contact() {
               className="hover:text-white transition-colors gpu-accelerated"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ scale: 1.2, color: '#a855f7' }}
             >

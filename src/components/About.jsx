@@ -47,16 +47,18 @@ const About = memo(function About() {
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.h2 
           className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12 animate gpu-accelerated"
-          whileInView={{ scale: [0.9, 1] }}
-          viewport={{ once: false }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
           About Me
         </motion.h2>
         <motion.p 
           className="text-lg text-gray-300 leading-relaxed mb-10 max-w-4xl mx-auto animate gpu-accelerated"
-          whileInView={{ x: [-50, 0], opacity: [0, 1] }}
-          viewport={{ once: false }}
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
           I'm Nitin Prakash, a passionate MERN Stack Developer and tech enthusiast currently expanding my expertise in Java, focusing on Data Structures and Algorithms (DSA) and Object-Oriented Programming (OOPs). With a solid foundation in JavaScript, React, Node.js, Express, and MongoDB, I enjoy building fast, functional, and user-friendly web applications. My goal is to combine clean code with creative design to deliver impactful digital experiences. I'm constantly exploring new technologies and refining my problem-solving skills to grow as a well-rounded full-stack developer.
@@ -70,7 +72,7 @@ const About = memo(function About() {
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
             >
               {skill}

@@ -34,13 +34,13 @@ const ProjectCard = memo(function ProjectCard({ project, i }) {
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, margin: '-50px' }}
+      viewport={{ once: true, margin: '-50px' }}
       transition={{ delay: i * 0.1, duration: 0.5 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onHoverStart={() => setHoveredId(project.id)}
       onHoverEnd={() => setHoveredId(null)}
-      style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+      style={{ rotateX: hoveredId === project.id ? rotateX : 0, rotateY: hoveredId === project.id ? rotateY : 0, transformStyle: 'preserve-3d' }}
       className="group relative overflow-hidden rounded-lg bg-gray-900 cursor-pointer gpu-accelerated"
     >
       <motion.div
@@ -100,7 +100,9 @@ const Projects = memo(function Projects() {
       <div className="max-w-6xl mx-auto">
         <motion.h2 
           className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12 animate"
-          whileInView={{ opacity: [0, 1], y: [-30, 0] }}
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
           Featured Projects

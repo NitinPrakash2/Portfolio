@@ -42,8 +42,9 @@ const Experience = memo(function Experience() {
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.h2 
           className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12 animate gpu-accelerated"
-          whileInView={{ opacity: [0, 1], x: [-50, 0] }}
-          viewport={{ once: false }}
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
           Experience
@@ -51,9 +52,9 @@ const Experience = memo(function Experience() {
         <div className="border-l-2 border-gray-700 pl-6 sm:pl-8 space-y-10 sm:space-y-12 relative">
           <motion.div 
             className="absolute left-0 top-0 w-0.5 bg-gradient-to-b from-purple-500 to-transparent gpu-accelerated"
-            initial={{ height: 0 }}
+            initial={{ height: '0%' }}
             whileInView={{ height: '100%' }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             transition={{ duration: 1.5, ease: 'easeOut' }}
           />
           
@@ -63,7 +64,7 @@ const Experience = memo(function Experience() {
               className="experience-block relative animate gpu-accelerated"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ delay: i * 0.2, duration: 0.5 }}
               whileHover={{ x: 10 }}
             >
@@ -71,7 +72,7 @@ const Experience = memo(function Experience() {
                 className="absolute -left-[29px] sm:-left-[37px] top-2 w-3 h-3 sm:w-4 sm:h-4 bg-purple-500 rounded-full border-4 border-black gpu-accelerated"
                 initial={{ scale: 0, boxShadow: '0 0 0 0 rgba(168, 85, 247, 0.7)' }}
                 whileInView={{ scale: 1 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 animate={{ boxShadow: ['0 0 0 0 rgba(168, 85, 247, 0.7)', '0 0 0 10px rgba(168, 85, 247, 0)'] }}
                 transition={{ 
                   scale: { delay: i * 0.2 + 0.3, type: 'spring', stiffness: 200 },
@@ -99,7 +100,7 @@ const Experience = memo(function Experience() {
                     className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-xs cursor-pointer gpu-accelerated"
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     transition={{ delay: i * 0.2 + j * 0.1 + 0.5 }}
                     whileHover={{ scale: 1.1, backgroundColor: '#374151' }}
                   >

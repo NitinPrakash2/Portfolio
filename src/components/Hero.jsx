@@ -38,8 +38,8 @@ const Hero = memo(function Hero() {
       />
       
       <div className="max-w-7xl mx-auto w-full relative z-10">
-        <h1 ref={textRef} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-white mb-6 sm:mb-8">
-          {'Empowering the Web with Clean Code, Logic, and Innovation'.split('').map((char, i) => (
+        <h1 ref={textRef} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-white mb-6 sm:mb-8">
+          {'Empowering the Web with Clean Code'.split('').map((char, i) => (
             <span key={i} className="letter inline-block" style={{ display: char === ' ' ? 'inline' : 'inline-block' }}>
               {char === ' ' ? '\u00A0' : char}
             </span>
