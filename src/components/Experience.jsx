@@ -49,7 +49,7 @@ const Experience = memo(function Experience() {
       
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.h2 
-          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12 animate gpu-accelerated"
+          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12 gpu-accelerated"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -69,7 +69,7 @@ const Experience = memo(function Experience() {
           {experiences.map((exp, i) => (
             <motion.div 
               key={exp.id} 
-              className="experience-block relative animate gpu-accelerated"
+              className="experience-block relative gpu-accelerated"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}

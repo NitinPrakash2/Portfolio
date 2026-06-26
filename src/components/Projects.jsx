@@ -156,7 +156,7 @@ const Projects = memo(function Projects() {
     <section ref={sectionRef} className="bg-transparent py-16 sm:py-20 px-6 sm:px-8">
       <div className="max-w-6xl mx-auto">
         <motion.h2 
-          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12 animate"
+          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12"
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

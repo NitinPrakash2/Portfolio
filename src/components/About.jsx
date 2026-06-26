@@ -46,7 +46,7 @@ const About = memo(function About() {
       
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.h2 
-          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12 animate gpu-accelerated"
+          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12 gpu-accelerated"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -55,7 +55,7 @@ const About = memo(function About() {
           About Me
         </motion.h2>
         <motion.p 
-          className="text-base sm:text-lg text-gray-300 leading-relaxed mb-10 max-w-4xl mx-auto animate gpu-accelerated"
+          className="text-base sm:text-lg text-gray-300 leading-relaxed mb-10 max-w-4xl mx-auto gpu-accelerated"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -67,7 +67,7 @@ const About = memo(function About() {
           {skills.map((skill, i) => (
             <motion.span 
               key={skill} 
-              className="px-3 py-1.5 bg-gray-800 text-white rounded-full text-xs sm:text-sm font-medium animate cursor-pointer gpu-accelerated"
+              className="px-3 py-1.5 bg-gray-800 text-white rounded-full text-xs sm:text-sm font-medium cursor-pointer gpu-accelerated"
               whileHover={{ scale: 1.1, backgroundColor: '#7c3aed', rotate: [0, -5, 5, 0] }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, y: 20 }}

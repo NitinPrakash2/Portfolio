@@ -29,7 +29,7 @@ const Contact = memo(function Contact() {
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.h2 
-            className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 animate gpu-accelerated"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 gpu-accelerated"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -38,7 +38,7 @@ const Contact = memo(function Contact() {
             Let's Work Together
           </motion.h2>
           <motion.p 
-            className="text-lg sm:text-xl text-gray-400 mb-10 sm:mb-12 animate gpu-accelerated"
+            className="text-lg sm:text-xl text-gray-400 mb-10 sm:mb-12 gpu-accelerated"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -58,7 +58,7 @@ const Contact = memo(function Contact() {
                       setCopied(true);
                       setTimeout(() => setCopied(false), 2000);
                     }}
-                    className={`w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 font-semibold rounded-lg animate no-underline gpu-accelerated bg-purple-600 text-white`}
+                    className={`w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 font-semibold rounded-lg no-underline gpu-accelerated bg-purple-600 text-white`}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -80,7 +80,7 @@ const Contact = memo(function Contact() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 font-semibold rounded-lg animate no-underline gpu-accelerated bg-gray-800 text-white text-center"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 font-semibold rounded-lg no-underline gpu-accelerated bg-gray-800 text-white text-center"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
