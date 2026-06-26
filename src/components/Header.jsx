@@ -1,8 +1,9 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
   const headerOpacity = useTransform(scrollY, [0, 100], [0.7, 0.95]);
   const headerBlur = useTransform(scrollY, [0, 100], [8, 16]);
@@ -17,6 +18,7 @@ const Header = () => {
 
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    setMobileMenuOpen(false);
   };
 
   const navItems = [
@@ -28,8 +30,8 @@ const Header = () => {
 
   const handleDownloadResume = () => {
     const link = document.createElement('a');
-    link.href = '/resume.pdf';
-    link.download = 'Nitin_Prakash_Resume.pdf';
+    link.href = '/NitinPrakashResume.pdf';
+    link.download = 'NitinPrakashResume.pdf';
     link.click();
   };
 
@@ -43,11 +45,11 @@ const Header = () => {
       <motion.div
         style={{ opacity: headerOpacity }}
         className={`absolute inset-0 bg-black/70 border-b transition-colors duration-300 ${
-          isScrolled ? 'border-purple-500/30' : 'border-transparent'
+          isScrolled || mobileMenuOpen ? 'border-purple-500/30' : 'border-transparent'
         }`}
       />
       
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 py-4 relative z-10">
+      <div className="px-4 sm:px-6 py-4 relative z-10">
         <div className="flex items-center justify-between">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -55,14 +57,14 @@ const Header = () => {
             transition={{ duration: 0.5 }}
             className="text-2xl font-bold text-white cursor-pointer"
             whileHover={{ scale: 1.05 }}
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setMobileMenuOpen(false); }}
           >
             <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Nitin Prakash
             </span>
           </motion.div>
 
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-4 lg:gap-6">
             {navItems.map((item, i) => (
               <motion.button
                 key={item.id}
@@ -98,14 +100,55 @@ const Header = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             className="md:hidden text-white"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             whileTap={{ scale: 0.9 }}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              {mobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
             </svg>
           </motion.button>
         </div>
       </div>
+
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25 }}
+            className="md:hidden bg-black/95 border-b border-purple-500/30 relative z-20"
+        >
+          <div className="px-6 py-4 space-y-3">
+            {navItems.map((item, i) => (
+              <motion.button
+                key={item.id}
+                initial={{ opacity: 0, x: -15 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.08 }}
+                onClick={() => scrollToSection(item.id)}
+                className="block w-full text-left text-gray-300 hover:text-white py-3 transition-colors text-base"
+              >
+                {item.name}
+              </motion.button>
+            ))}
+            <motion.button
+              initial={{ opacity: 0, x: -15 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: navItems.length * 0.08 }}
+              onClick={() => { handleDownloadResume(); setMobileMenuOpen(false); }}
+              className="w-full px-4 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-medium text-base"
+            >
+              Download Resume
+            </motion.button>
+          </div>
+        </motion.div>
+      )}
+      </AnimatePresence>
     </motion.header>
   );
 };

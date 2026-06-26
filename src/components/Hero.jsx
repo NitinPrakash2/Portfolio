@@ -39,7 +39,7 @@ const Hero = memo(function Hero() {
       
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <h1 ref={textRef} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-white mb-6 sm:mb-8">
-          {'Empowering the Web with Clean Code'.split('').map((char, i) => (
+          {'Building Scalable Web Solutions with Clean Code'.split('').map((char, i) => (
             <span key={i} className="letter inline-block" style={{ display: char === ' ' ? 'inline' : 'inline-block' }}>
               {char === ' ' ? '\u00A0' : char}
             </span>
@@ -51,7 +51,7 @@ const Hero = memo(function Hero() {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-lg sm:text-xl md:text-2xl text-gray-400 max-w-2xl gpu-accelerated"
         >
-          Creative developer crafting seamless digital experiences with modern web technologies.
+          Full Stack Developer skilled in building scalable MERN stack applications using React.js, Node.js, and modern web technologies.
         </motion.p>
         <motion.button
           ref={buttonRef}
@@ -60,9 +60,10 @@ const Hero = memo(function Hero() {
           transition={{ opacity: { duration: 0.6, delay: 0.8 }, x: { duration: 0.2 }, y: { duration: 0.2 } }}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
+          onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
           whileHover={{ scale: 1.05, boxShadow: '0 0 25px rgba(168, 85, 247, 0.4)' }}
           whileTap={{ scale: 0.95 }}
-          className="mt-8 px-8 py-4 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-all no-underline relative overflow-hidden group gpu-accelerated"
+          className="mt-8 px-8 py-4 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-all no-underline relative overflow-hidden group gpu-accelerated cursor-pointer"
         >
           <motion.span
             className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400"
@@ -79,7 +80,7 @@ const Hero = memo(function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 10, 0] }}
         transition={{ opacity: { duration: 0.6, delay: 1 }, y: { duration: 2, repeat: Infinity } }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-10 left-0 right-0 mx-auto w-max flex flex-col items-center gap-2"
       >
         <span className="text-sm text-gray-500 uppercase tracking-wider">Scroll</span>
         <div className="w-[1px] h-16 bg-gradient-to-b from-purple-500 to-transparent" />

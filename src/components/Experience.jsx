@@ -5,26 +5,34 @@ import { memo } from 'react';
 const experiences = [
   { 
     id: 1, 
-    title: '💻 MERN Stack Developer (Self Projects)', 
-    company: '2024–Present', 
-    period: '2024–Present',
+    title: 'Hackathon Runner-up — GeeksforGeeks', 
+    period: '2025',
     description: [
-      'Building full-stack web applications using React, Node.js, Express, and MongoDB.',
-      'Gained experience with API integration, frontend–backend connectivity, and responsive UI.',
-      'Continuously learning and implementing new technologies to improve performance and design.'
+      'Secured 2nd position in a hackathon organized by GeeksforGeeks for developing an innovative, problem-solving based project.',
+      'Demonstrated strong teamwork, rapid prototyping, and technical skills under competitive time constraints.'
     ],
-    technologies: ['React', 'Node.js', 'Express', 'MongoDB']
+    technologies: ['React', 'Node.js', 'MongoDB', 'Teamwork']
   },
   { 
     id: 2, 
-    title: '☕ Java Developer (Learning Phase)', 
-    company: 'Learning Phase', 
+    title: 'Full Stack Developer — Self Projects', 
+    period: '2024–Present',
+    description: [
+      'Built NeuroDesk: Full-stack AI-powered productivity app with real-time data sync, JWT auth, task/goal/note management, and multi-provider AI integration.',
+      'Built Resumate: AI-powered resume analyzer with ATS scoring, job matching, and multi-AI provider support.',
+      'Integrated WebSocket for real-time features and third-party APIs (OpenRouter, Gemini, Groq, Mistral).'
+    ],
+    technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'PostgreSQL', 'WebSocket', 'JWT', 'Tailwind CSS']
+  },
+  { 
+    id: 3, 
+    title: 'Competitive Programming & Problem Solving', 
     period: 'Ongoing',
     description: [
-      'Learning Java with a strong focus on Data Structures, Algorithms, and OOPs concepts.',
-      'Practicing coding challenges to strengthen logical thinking and backend fundamentals.'
+      'Actively participate in hackathons and coding competitions to sharpen analytical and problem-solving skills.',
+      'Runner-up in multiple hackathons for developing innovative solutions.'
     ],
-    technologies: ['Java', 'DSA', 'OOPs']
+    technologies: ['JavaScript', 'Python', 'C++', 'DSA']
   },
 ];
 

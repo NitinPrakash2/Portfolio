@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const skills = ['HTML', 'CSS', 'JavaScript', 'React.js', 'Next.js', 'MongoDB', 'Express.js', 'Tailwind', 'Node.js'];
+const skills = ['JavaScript', 'Python', 'C', 'C++', 'HTML5', 'CSS3', 'React.js', 'Tailwind CSS', 'Node.js', 'Express.js', 'MongoDB', 'MySQL', 'PostgreSQL', 'Redux Toolkit', 'Git', 'GitHub', 'Socket.io'];
 
 const About = memo(function About() {
   const sectionRef = useScrollAnimation({ stagger: 0.1 });
@@ -61,7 +61,7 @@ const About = memo(function About() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          I'm Nitin Prakash, a passionate MERN Stack Developer and tech enthusiast currently expanding my expertise in Java, focusing on Data Structures and Algorithms (DSA) and Object-Oriented Programming (OOPs). With a solid foundation in JavaScript, React, Node.js, Express, and MongoDB, I enjoy building fast, functional, and user-friendly web applications. My goal is to combine clean code with creative design to deliver impactful digital experiences. I'm constantly exploring new technologies and refining my problem-solving skills to grow as a well-rounded full-stack developer.
+          Results-driven Full Stack Web Developer skilled in building scalable MERN stack applications using React.js, Node.js, and modern web technologies. Strong problem-solving abilities with hackathon experience and a passion for developing efficient, high-quality solutions. Currently pursuing BCA at IMS Noida, constantly exploring new technologies and refining my skills to build impactful digital experiences.
         </motion.p>
         <div className="flex flex-wrap gap-3 justify-center max-w-3xl mx-auto">
           {skills.map((skill, i) => (

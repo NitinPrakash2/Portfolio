@@ -1,21 +1,22 @@
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { motion } from 'framer-motion';
-import { memo } from 'react';
+import { memo, useState } from 'react';
 
 const CONTACT_LINKS = [
-  { href: 'mailto:nitin@example.com', label: 'Email', primary: true },
-  { href: 'https://linkedin.com', label: 'LinkedIn' },
+  { href: 'mailto:nitinprakash268@gmail.com', label: 'Email', primary: true },
+  { href: 'https://www.linkedin.com/in/nitin-prakash-3b8a01373/', label: 'LinkedIn' },
   { href: 'https://github.com/NitinPrakash2', label: 'GitHub' },
+  { href: 'tel:+919304701381', label: '+91-9304701381' },
 ];
 
 const SOCIAL_LINKS = [
-  { href: 'https://linkedin.com', label: 'LinkedIn' },
+  { href: 'https://www.linkedin.com/in/nitin-prakash-3b8a01373/', label: 'LinkedIn' },
   { href: 'https://github.com/NitinPrakash2', label: 'GitHub' },
-  { href: 'https://twitter.com', label: 'Twitter' },
 ];
 
 const Contact = memo(function Contact() {
   const sectionRef = useScrollAnimation({ y: 50 });
+  const [copied, setCopied] = useState(false);
 
   return (
     <>
@@ -46,28 +47,55 @@ const Contact = memo(function Contact() {
             Have a project in mind or just want to say hi?
           </motion.p>
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
-            {CONTACT_LINKS.map((link, i) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                {...(link.href.startsWith('http') && { target: '_blank', rel: 'noopener noreferrer' })}
-                className={`px-8 py-4 font-semibold rounded-lg animate no-underline gpu-accelerated ${
-                  link.primary ? 'bg-purple-600 text-white' : 'bg-gray-800 text-white'
-                }`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 + 0.3, duration: 0.5 }}
-                whileHover={{ 
-                  scale: 1.05, 
-                  boxShadow: link.primary ? '0 0 30px rgba(168, 85, 247, 0.5)' : '0 0 20px rgba(75, 85, 99, 0.5)',
-                  y: -5
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {link.label}
-              </motion.a>
-            ))}
+            {CONTACT_LINKS.map((link, i) => {
+              if (link.href.startsWith('mailto')) {
+                return (
+                  <motion.button
+                    key={link.label}
+                    onClick={() => {
+                      const email = 'nitinprakash268@gmail.com';
+                      navigator.clipboard.writeText(email);
+                      setCopied(true);
+                      setTimeout(() => setCopied(false), 2000);
+                    }}
+                    className={`px-8 py-4 font-semibold rounded-lg animate no-underline gpu-accelerated bg-purple-600 text-white`}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 + 0.3, duration: 0.5 }}
+                    whileHover={{ 
+                      scale: 1.05, 
+                      boxShadow: '0 0 30px rgba(168, 85, 247, 0.5)',
+                      y: -5
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {copied ? 'Copied!' : link.label}
+                  </motion.button>
+                );
+              }
+              return (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-8 py-4 font-semibold rounded-lg animate no-underline gpu-accelerated bg-gray-800 text-white"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 + 0.3, duration: 0.5 }}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    boxShadow: '0 0 20px rgba(75, 85, 99, 0.5)',
+                    y: -5
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {link.label}
+                </motion.a>
+              );
+            })}
           </div>
         </div>
       </section>
