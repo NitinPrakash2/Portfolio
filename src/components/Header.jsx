@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -17,8 +18,17 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+    };
   }, [mobileMenuOpen]);
 
   const scrollToSection = (id) => {
@@ -119,49 +129,51 @@ const Header = () => {
         </div>
       </div>
 
+      {mobileMenuOpen && createPortal(
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          onClick={() => setMobileMenuOpen(false)}
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+        />,
+        document.body
+      )}
+
       <AnimatePresence>
         {mobileMenuOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-10 md:hidden"
-            />
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.25 }}
-              className="md:hidden bg-black/70 backdrop-blur-xl border-b border-purple-500/30 relative z-20"
-          >
-            <div className="px-6 py-4 space-y-3">
-              {navItems.map((item, i) => (
-                <motion.button
-                  key={item.id}
-                  initial={{ opacity: 0, x: -15 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.08 }}
-                  onClick={() => scrollToSection(item.id)}
-                  className="block w-full text-left text-gray-300 hover:text-white py-3 transition-colors text-base"
-                >
-                  {item.name}
-                </motion.button>
-              ))}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25 }}
+            className="md:hidden bg-black/70 backdrop-blur-xl border-b border-purple-500/30 relative z-20"
+        >
+          <div className="px-6 py-4 space-y-3">
+            {navItems.map((item, i) => (
               <motion.button
+                key={item.id}
                 initial={{ opacity: 0, x: -15 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navItems.length * 0.08 }}
-                onClick={() => { handleDownloadResume(); setMobileMenuOpen(false); }}
-                className="w-full px-4 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-medium text-base"
+                transition={{ delay: i * 0.08 }}
+                onClick={() => scrollToSection(item.id)}
+                className="block w-full text-left text-gray-300 hover:text-white py-3 transition-colors text-base"
               >
-                Download Resume
+                {item.name}
               </motion.button>
-            </div>
-          </motion.div>
-          </>
+            ))}
+            <motion.button
+              initial={{ opacity: 0, x: -15 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: navItems.length * 0.08 }}
+              onClick={() => { handleDownloadResume(); setMobileMenuOpen(false); }}
+              className="w-full px-4 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-medium text-base"
+            >
+              Download Resume
+            </motion.button>
+          </div>
+        </motion.div>
       )}
       </AnimatePresence>
     </motion.header>

@@ -116,7 +116,7 @@ const Contact = memo(function Contact() {
       <footer className="relative bg-transparent py-16 text-center overflow-hidden">
         <div className="absolute top-0 left-10 right-10 h-[1px] bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-50" />
         <motion.div 
-          className="flex justify-center gap-6 mb-6 gpu-accelerated"
+          className="flex justify-center items-center gap-2 mb-6 gpu-accelerated"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -128,14 +128,15 @@ const Contact = memo(function Contact() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative px-4 py-2 text-gray-400 hover:text-white transition-all gpu-accelerated rounded-lg hover:bg-white/5"
+              className="group relative inline-flex items-center gap-1.5 px-3 py-1.5 text-xs text-gray-400 hover:text-white transition-all gpu-accelerated rounded-md hover:bg-white/[0.06] border border-transparent hover:border-purple-500/20"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              whileHover={{ scale: 1.1, color: '#a855f7', y: -2 }}
+              whileHover={{ scale: 1.05, color: '#a855f7', y: -1 }}
               whileTap={{ scale: 0.95 }}
             >
+              <span className="w-1 h-1 rounded-full bg-purple-500/0 group-hover:bg-purple-500 transition-all duration-300" />
               {link.label}
             </motion.a>
           ))}
