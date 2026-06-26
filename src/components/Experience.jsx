@@ -40,7 +40,7 @@ const Experience = memo(function Experience() {
   const sectionRef = useScrollAnimation({ stagger: 0.2, y: 30 });
 
   return (
-    <section ref={sectionRef} className="bg-transparent py-16 sm:py-20 px-6 sm:px-8 relative overflow-hidden">
+    <section ref={sectionRef} className="bg-transparent py-16 sm:py-20 px-4 sm:px-6 relative">
       <motion.div 
         className="absolute top-1/2 right-0 w-96 h-96 bg-purple-600 rounded-full blur-[120px] opacity-10"
         animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.15, 0.1] }}

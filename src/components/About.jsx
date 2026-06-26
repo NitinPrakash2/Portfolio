@@ -25,7 +25,7 @@ const About = memo(function About() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-transparent py-16 sm:py-20 px-4 sm:px-6 relative">
+    <section ref={sectionRef} className="bg-transparent py-16 sm:py-20 px-4 sm:px-6 relative overflow-x-hidden">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
           backgroundImage: 'linear-gradient(rgba(168, 85, 247, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(168, 85, 247, 0.1) 1px, transparent 1px)',

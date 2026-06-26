@@ -46,7 +46,7 @@ const Contact = memo(function Contact() {
           >
             Have a project in mind or just want to say hi?
           </motion.p>
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
             {CONTACT_LINKS.map((link, i) => {
               if (link.href.startsWith('mailto')) {
                 return (
@@ -58,7 +58,7 @@ const Contact = memo(function Contact() {
                       setCopied(true);
                       setTimeout(() => setCopied(false), 2000);
                     }}
-                    className={`px-8 py-4 font-semibold rounded-lg animate no-underline gpu-accelerated bg-purple-600 text-white`}
+                    className={`w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 font-semibold rounded-lg animate no-underline gpu-accelerated bg-purple-600 text-white`}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -80,7 +80,7 @@ const Contact = memo(function Contact() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-8 py-4 font-semibold rounded-lg animate no-underline gpu-accelerated bg-gray-800 text-white"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 font-semibold rounded-lg animate no-underline gpu-accelerated bg-gray-800 text-white text-center"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}

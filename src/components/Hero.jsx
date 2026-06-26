@@ -39,9 +39,9 @@ const Hero = memo(function Hero() {
       
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <h1 ref={textRef} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-white mb-6 sm:mb-8">
-          {'Building Scalable Web Solutions with Clean Code'.split('').map((char, i) => (
-            <span key={i} className="letter inline-block" style={{ display: char === ' ' ? 'inline' : 'inline-block' }}>
-              {char === ' ' ? '\u00A0' : char}
+          {'Building Scalable Web Solutions with Clean Code'.split(' ').map((word, i, arr) => (
+            <span key={i} className="letter inline-block">
+              {word}{i < arr.length - 1 ? '\u00A0' : ''}
             </span>
           ))}
         </h1>
