@@ -29,10 +29,6 @@ body {
 
 /* Performance optimizations */
 .gpu-accelerated, [class*="will-change"] {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  perspective: 1000;
   will-change: transform, opacity;
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
@@ -97,7 +93,7 @@ body {
     width: 100%;
   }
 
-  h1, h2, h3, h4, h5, h6, p, a, span {
+  h1, h2, h3, h4, h5, h6 {
     position: relative;
   }
 
