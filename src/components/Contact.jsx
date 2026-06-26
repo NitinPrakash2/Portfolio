@@ -46,7 +46,7 @@ const Contact = memo(function Contact() {
           >
             Have a project in mind or just want to say hi?
           </motion.p>
-          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
             {CONTACT_LINKS.map((link, i) => {
               if (link.href.startsWith('mailto')) {
                 return (
@@ -58,19 +58,25 @@ const Contact = memo(function Contact() {
                       setCopied(true);
                       setTimeout(() => setCopied(false), 2000);
                     }}
-                    className={`w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 font-semibold rounded-lg no-underline gpu-accelerated bg-purple-600 text-white`}
+                    className={`relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 font-semibold rounded-lg no-underline gpu-accelerated bg-gradient-to-r from-purple-600 to-pink-600 text-white overflow-hidden group`}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 + 0.3, duration: 0.5 }}
                     whileHover={{ 
                       scale: 1.05, 
-                      boxShadow: '0 0 30px rgba(168, 85, 247, 0.5)',
+                      boxShadow: '0 0 40px rgba(168, 85, 247, 0.6), 0 0 80px rgba(168, 85, 247, 0.2)',
                       y: -5
                     }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    {copied ? 'Copied!' : link.label}
+                    <motion.span
+                      className="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-500"
+                      initial={{ x: '-100%' }}
+                      whileHover={{ x: '100%' }}
+                      transition={{ duration: 0.6 }}
+                    />
+                    <span className="relative z-10">{copied ? 'Copied!' : link.label}</span>
                   </motion.button>
                 );
               }
@@ -80,19 +86,26 @@ const Contact = memo(function Contact() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 font-semibold rounded-lg no-underline gpu-accelerated bg-gray-800 text-white text-center"
+                  className="relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 font-semibold rounded-lg no-underline gpu-accelerated text-white text-center overflow-hidden group border border-gray-700 hover:border-purple-500/50 transition-colors bg-gray-900/80 backdrop-blur-sm"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 + 0.3, duration: 0.5 }}
                   whileHover={{ 
                     scale: 1.05, 
-                    boxShadow: '0 0 20px rgba(75, 85, 99, 0.5)',
-                    y: -5
+                    boxShadow: '0 0 30px rgba(168, 85, 247, 0.3), 0 0 60px rgba(168, 85, 247, 0.1)',
+                    y: -5,
+                    borderColor: 'rgba(168, 85, 247, 0.5)',
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {link.label}
+                  <motion.span
+                    className="absolute inset-0 bg-gradient-to-r from-purple-600/20 via-pink-600/10 to-purple-600/20"
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: '100%' }}
+                    transition={{ duration: 0.6 }}
+                  />
+                  <span className="relative z-10">{link.label}</span>
                 </motion.a>
               );
             })}
@@ -100,9 +113,10 @@ const Contact = memo(function Contact() {
         </div>
       </section>
 
-      <footer className="bg-transparent py-16 text-center text-gray-400 border-t border-gray-700">
+      <footer className="relative bg-transparent py-16 text-center overflow-hidden">
+        <div className="absolute top-0 left-10 right-10 h-[1px] bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-50" />
         <motion.div 
-          className="flex justify-center gap-6 mb-4 gpu-accelerated"
+          className="flex justify-center gap-6 mb-6 gpu-accelerated"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -114,20 +128,30 @@ const Contact = memo(function Contact() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white transition-colors gpu-accelerated"
+              className="relative px-4 py-2 text-gray-400 hover:text-white transition-all gpu-accelerated rounded-lg hover:bg-white/5"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              whileHover={{ scale: 1.2, color: '#a855f7' }}
+              whileHover={{ scale: 1.1, color: '#a855f7', y: -2 }}
+              whileTap={{ scale: 0.95 }}
             >
               {link.label}
             </motion.a>
           ))}
         </motion.div>
+        <motion.div
+          className="w-16 h-[1px] bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-6 rounded-full"
+          initial={{ scaleX: 0, opacity: 0 }}
+          whileInView={{ scaleX: 1, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        />
         <motion.p
+          className="text-gray-500 text-sm tracking-wide"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           transition={{ delay: 0.4 }}
         >
           © 2025 Nitin Prakash. All rights reserved.
