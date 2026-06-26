@@ -70,11 +70,17 @@ const Header = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-2xl font-bold text-white cursor-pointer"
-            whileHover={{ scale: 1.05 }}
+            className="flex items-center gap-3 cursor-pointer"
             onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setMobileMenuOpen(false); }}
           >
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <motion.img
+              src="/favicon.png"
+              alt="Nitin Prakash"
+              className="w-8 h-8 rounded-full object-cover border border-purple-500/30"
+              whileHover={{ scale: 1.1, borderColor: 'rgba(168, 85, 247, 0.8)' }}
+              whileTap={{ scale: 0.95 }}
+            />
+            <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Nitin Prakash
             </span>
           </motion.div>
