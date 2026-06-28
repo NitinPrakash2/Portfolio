@@ -1,15 +1,19 @@
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { lazy, Suspense } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform, LazyMotion, domAnimation } from 'framer-motion';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import About from './components/About';
-import Projects from './components/Projects';
-import Experience from './components/Experience';
-import Contact from './components/Contact';
-import CustomCursor from './components/CustomCursor';
+
+const About = lazy(() => import('./components/About'));
+const Projects = lazy(() => import('./components/Projects'));
+const Experience = lazy(() => import('./components/Experience'));
+const Contact = lazy(() => import('./components/Contact'));
+const CustomCursor = lazy(() => import('./components/CustomCursor'));
+
+function SectionFallback() {
+  return <div className="py-16" />;
+}
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
   const { scrollYProgress } = useScroll();
   const backgroundColor = useTransform(
     scrollYProgress,
@@ -17,67 +21,45 @@ export default function App() {
     ['#000000', '#1a0a2e', '#2d1b4e', '#3d2463']
   );
 
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 800);
-  }, []);
-
   return (
-    <>
-      <CustomCursor />
-      <AnimatePresence>
-        {loading && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black overflow-hidden"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-br from-purple-600 to-pink-600"
-              initial={{ scale: 0 }}
-              animate={{ scale: 2 }}
-              exit={{ scale: 0 }}
-              transition={{ duration: 0.8 }}
-              style={{ opacity: 0.2, filter: 'blur(80px)' }}
-            />
-            <motion.div
-              className="text-6xl font-bold text-white relative z-10 flex gap-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              {['N', 'P'].map((letter, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ y: 50, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: i * 0.1, duration: 0.4 }}
-                >
-                  {letter}
-                </motion.span>
-              ))}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <LazyMotion features={domAnimation} strict>
+      <Suspense fallback={null}>
+        <CustomCursor />
+      </Suspense>
 
       <motion.div
         style={{ backgroundColor }}
-        className="min-h-screen transition-colors duration-1000"
+        className="min-h-screen"
       >
         <Header />
         <motion.main
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
+          transition={{ duration: 0.5 }}
         >
         <Hero />
-        <div id="about"><About /></div>
-        <div id="projects"><Projects /></div>
-        <div id="experience"><Experience /></div>
-        <div id="contact"><Contact /></div>
+        <div id="about">
+          <Suspense fallback={<SectionFallback />}>
+            <About />
+          </Suspense>
+        </div>
+        <div id="projects">
+          <Suspense fallback={<SectionFallback />}>
+            <Projects />
+          </Suspense>
+        </div>
+        <div id="experience">
+          <Suspense fallback={<SectionFallback />}>
+            <Experience />
+          </Suspense>
+        </div>
+        <div id="contact">
+          <Suspense fallback={<SectionFallback />}>
+            <Contact />
+          </Suspense>
+        </div>
         </motion.main>
       </motion.div>
-    </>
+    </LazyMotion>
   );
 }
