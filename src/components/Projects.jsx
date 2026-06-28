@@ -98,8 +98,7 @@ const Projects = memo(function Projects() {
 
   return (
     <section ref={sectionRef} className="bg-transparent py-16 sm:py-20 px-6 sm:px-8 relative overflow-hidden">
-      <div className="absolute top-10 -left-20 w-80 h-80 bg-purple-600 rounded-full opacity-[0.08] pointer-events-none animate-blob-drift blur-2xl" style={{ animationDuration: '16s' }} />
-      <div className="absolute bottom-10 -right-20 w-64 h-64 bg-pink-500 rounded-full opacity-[0.06] pointer-events-none animate-blob-breathe blur-2xl" style={{ animationDelay: '-4s' }} />
+      <div className="absolute top-10 -left-20 w-64 h-64 bg-purple-600 rounded-full opacity-[0.05] pointer-events-none animate-blob-drift" style={{ animationDuration: '16s' }} />
       <div className="max-w-6xl mx-auto">
         <h2 className={`text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12 reveal ${inView ? 'visible' : ''}`}>
           Featured Projects

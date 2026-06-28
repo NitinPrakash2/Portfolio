@@ -31,9 +31,8 @@ const Experience = memo(function Experience() {
 
   return (
     <section ref={sectionRef} className="bg-transparent py-16 sm:py-20 px-4 sm:px-6 relative">
-      <div className="absolute top-1/2 right-0 w-96 h-96 bg-purple-600 rounded-full opacity-10 pointer-events-none animate-blob" style={{ animationDuration: '6s' }} />
-      <div className="absolute top-1/4 left-0 w-72 h-72 bg-blue-500 rounded-full opacity-[0.08] pointer-events-none animate-blob-drift blur-2xl" style={{ animationDuration: '14s', animationDelay: '-4s' }} />
-      <div className="absolute bottom-1/4 left-1/3 w-48 h-48 bg-pink-500 rounded-full opacity-[0.06] pointer-events-none animate-blob-breathe blur-xl" style={{ animationDelay: '-7s' }} />
+      <div className="absolute top-1/2 right-0 w-80 h-80 bg-purple-600 rounded-full opacity-[0.06] pointer-events-none animate-blob" style={{ animationDuration: '6s' }} />
+      <div className="absolute top-1/4 left-0 w-64 h-64 bg-blue-500 rounded-full opacity-[0.04] pointer-events-none animate-blob-drift" style={{ animationDuration: '14s', animationDelay: '-4s' }} />
       
       <div className="max-w-6xl mx-auto relative z-10">
         <h2 className={`text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12 reveal ${inView ? 'visible' : ''}`}>
