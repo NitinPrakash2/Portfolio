@@ -10,7 +10,7 @@ const SOCIAL_LINKS = [
 ];
 
 const CONTACT_LINKS = [
-  { href: 'mailto:nitinprakash268@gmail.com', icon: SiGmail, label: 'Email' },
+  { href: 'https://mail.google.com/mail/?view=cm&fs=1&to=nitinprakash268@gmail.com', icon: SiGmail, label: 'Email' },
   { href: 'https://www.linkedin.com/in/nitin-prakash-3b8a01373/', icon: FaLinkedin, label: 'LinkedIn' },
   { href: 'https://github.com/NitinPrakash2', icon: FaGithub, label: 'GitHub' },
   { href: 'tel:+919304701381', icon: FiPhone, label: 'Phone' },
@@ -34,7 +34,7 @@ const Contact = memo(function Contact() {
           </p>
           <div className="flex flex-wrap justify-center gap-5 sm:gap-6">
             {CONTACT_LINKS.map((link, i) => {
-              const common = `relative w-10 h-10 rounded-full flex items-center justify-center reveal ${inView ? 'visible' : ''}`;
+              const common = `relative w-10 h-10 rounded-full flex items-center justify-center cursor-pointer reveal ${inView ? 'visible' : ''}`;
               const iconClass = "w-5 h-5 relative z-10";
               const isExternal = !link.href.startsWith('mailto') && !link.href.startsWith('tel');
 
