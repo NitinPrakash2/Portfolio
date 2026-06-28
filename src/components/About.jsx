@@ -14,8 +14,6 @@ const About = memo(function About() {
           backgroundSize: '50px 50px',
         }} />
       </div>
-      <div className="absolute -top-20 -left-20 w-72 h-72 bg-blue-600 rounded-full opacity-[0.12] pointer-events-none animate-blob" style={{ animationDuration: '10s' }} />
-      <div className="absolute bottom-20 right-20 w-64 h-64 bg-purple-600 rounded-full opacity-[0.12] pointer-events-none animate-blob" style={{ animationDuration: '12s', animationDelay: '-3s' }} />
       
       <div className="max-w-6xl mx-auto relative z-10">
         <h2 className={`text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12 reveal ${inView ? 'visible' : ''}`}>

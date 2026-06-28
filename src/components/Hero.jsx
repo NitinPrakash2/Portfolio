@@ -8,8 +8,6 @@ const Hero = memo(function Hero() {
   return (
     <section className="bg-transparent min-h-screen flex flex-col justify-center px-6 sm:px-10 relative overflow-hidden">
       
-      <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-purple-600 rounded-full opacity-[0.06] animate-blob" />
-      <div className="absolute bottom-1/4 right-1/3 w-64 h-64 bg-blue-500 rounded-full opacity-[0.04] animate-blob-breathe" style={{ animationDelay: '-3s' }} />
       
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <h1 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-white mb-6 sm:mb-8 reveal ${mounted ? 'visible' : ''}`}>
