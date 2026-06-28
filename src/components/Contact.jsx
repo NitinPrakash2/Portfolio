@@ -36,10 +36,12 @@ const Contact = memo(function Contact() {
             {CONTACT_LINKS.map((link, i) => {
               const common = `relative w-10 h-10 rounded-full flex items-center justify-center reveal ${inView ? 'visible' : ''}`;
               const iconClass = "w-5 h-5 relative z-10";
-
+              const isExternal = !link.href.startsWith('mailto') && !link.href.startsWith('tel');
 
               return (
-                <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer"
+                <a key={link.label} href={link.href}
+                  target={isExternal ? '_blank' : undefined}
+                  rel={isExternal ? 'noopener noreferrer' : undefined}
                   className={`${common} bg-white/[0.04] border border-white/10 no-underline`}
                   style={{ transitionDelay: `${0.3 + i * 0.1}s` }}
                   title={link.label}
