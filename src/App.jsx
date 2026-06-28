@@ -50,7 +50,7 @@ export default function App() {
     if (blob2Ref.current) {
       blob2Ref.current.style.transform = `translateX(${gamma * -0.2}px)`;
     }
-  }, [gamma, beta]);
+  }, [gamma]);
 
   return (
     <>
