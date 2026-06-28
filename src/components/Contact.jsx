@@ -35,14 +35,14 @@ const Contact = memo(function Contact() {
           </p>
           <div className="flex flex-wrap justify-center gap-5 sm:gap-6">
             {CONTACT_LINKS.map((link, i) => {
-              const common = `relative w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/30 reveal ${inView ? 'visible' : ''}`;
-              const iconClass = "w-6 h-6 sm:w-7 sm:h-7 relative z-10";
+              const common = `relative w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:shadow-md hover:shadow-purple-500/20 reveal ${inView ? 'visible' : ''}`;
+              const iconClass = "w-5 h-5 relative z-10";
 
               if (link.isCopy) {
                 return (
                   <button key={link.label}
                     onClick={() => { navigator.clipboard.writeText('nitinprakash268@gmail.com'); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
-                    className={`${common} bg-purple-600/20 border border-purple-500/40 hover:bg-purple-600/30`}
+                    className={`${common} bg-purple-600/10 border border-purple-500/30 hover:bg-purple-600/20 hover:border-purple-500/60`}
                     style={{ transitionDelay: `${0.3 + i * 0.1}s` }}
                     title={copied ? 'Copied!' : link.label}
                   >
@@ -52,7 +52,7 @@ const Contact = memo(function Contact() {
               }
               return (
                 <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer"
-                  className={`${common} bg-white/5 border border-white/10 hover:border-purple-500/50 hover:bg-white/10`}
+                  className={`${common} bg-white/[0.04] border border-white/10 hover:border-purple-500/40 hover:bg-white/[0.08]`}
                   style={{ transitionDelay: `${0.3 + i * 0.1}s` }}
                   title={link.label}
                 >
