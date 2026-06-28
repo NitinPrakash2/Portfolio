@@ -1,16 +1,14 @@
 import { memo, useState } from 'react';
 import useInView from '../hooks/useInView';
+import { SiGmail } from 'react-icons/si';
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
+import { FiPhone } from 'react-icons/fi';
 
 const CONTACT_LINKS = [
-  { href: 'mailto:nitinprakash268@gmail.com', label: 'Email' },
-  { href: 'https://www.linkedin.com/in/nitin-prakash-3b8a01373/', label: 'LinkedIn' },
-  { href: 'https://github.com/NitinPrakash2', label: 'GitHub' },
-  { href: 'tel:+919304701381', label: '+91-9304701381' },
-];
-
-const SOCIAL_LINKS = [
-  { href: 'https://www.linkedin.com/in/nitin-prakash-3b8a01373/', label: 'LinkedIn' },
-  { href: 'https://github.com/NitinPrakash2', label: 'GitHub' },
+  { href: 'mailto:nitinprakash268@gmail.com', icon: SiGmail, label: 'Email', isCopy: true },
+  { href: 'https://www.linkedin.com/in/nitin-prakash-3b8a01373/', icon: FaLinkedin, label: 'LinkedIn' },
+  { href: 'https://github.com/NitinPrakash2', icon: FaGithub, label: 'GitHub' },
+  { href: 'tel:+919304701381', icon: FiPhone, label: 'Phone' },
 ];
 
 const Contact = memo(function Contact() {
@@ -30,27 +28,30 @@ const Contact = memo(function Contact() {
           <p className={`text-lg sm:text-xl text-gray-400 mb-10 sm:mb-12 reveal reveal-delay-1 ${inView ? 'visible' : ''}`}>
             Have a project in mind or just want to say hi?
           </p>
-          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4">
+          <div className="flex flex-wrap justify-center gap-5 sm:gap-6">
             {CONTACT_LINKS.map((link, i) => {
-              if (link.href.startsWith('mailto')) {
+              const common = `relative w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/30 reveal ${inView ? 'visible' : ''}`;
+              const iconClass = "w-6 h-6 sm:w-7 sm:h-7 relative z-10";
+
+              if (link.isCopy) {
                 return (
                   <button key={link.label}
                     onClick={() => { navigator.clipboard.writeText('nitinprakash268@gmail.com'); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
-                    className={`relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 font-semibold rounded-lg no-underline bg-gradient-to-r from-purple-600 to-pink-600 text-white overflow-hidden group transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/40 reveal ${inView ? 'visible' : ''}`}
+                    className={`${common} bg-purple-600/20 border border-purple-500/40 hover:bg-purple-600/30`}
                     style={{ transitionDelay: `${0.3 + i * 0.1}s` }}
+                    title={copied ? 'Copied!' : link.label}
                   >
-                    <span className="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-500 transition-transform duration-500 -translate-x-full group-hover:translate-x-full" />
-                    <span className="relative z-10">{copied ? 'Copied!' : link.label}</span>
+                    <link.icon className={iconClass} />
                   </button>
                 );
               }
               return (
                 <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer"
-                  className={`relative w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 font-semibold rounded-lg no-underline text-white text-center overflow-hidden group border border-gray-700 hover:border-purple-500/50 transition-all bg-gray-900/80 reveal ${inView ? 'visible' : ''}`}
+                  className={`${common} bg-white/5 border border-white/10 hover:border-purple-500/50 hover:bg-white/10`}
                   style={{ transitionDelay: `${0.3 + i * 0.1}s` }}
+                  title={link.label}
                 >
-                  <span className="absolute inset-0 bg-gradient-to-r from-purple-600/20 via-pink-600/10 to-purple-600/20 transition-transform duration-500 -translate-x-full group-hover:translate-x-full" />
-                  <span className="relative z-10">{link.label}</span>
+                  <link.icon className={iconClass} />
                 </a>
               );
             })}
