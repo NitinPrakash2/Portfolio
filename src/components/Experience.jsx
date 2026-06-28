@@ -57,7 +57,7 @@ const Experience = memo(function Experience() {
           
           {experiences.map((exp, i) => (
             <div key={exp.id} className={`relative hover:translate-x-2 transition-transform duration-300 reveal reveal-left ${inView ? 'visible' : ''}`} style={{ transitionDelay: `${0.1 + i * 0.2}s` }}>
-              <div className="absolute -left-[29px] sm:-left-[37px] top-2 w-3 h-3 sm:w-4 sm:h-4 bg-purple-500 rounded-full border-4 border-black animate-dot-pulse" />
+              <div className="absolute -left-[31px] sm:-left-[41px] top-2 w-3 h-3 sm:w-4 sm:h-4 bg-purple-500 rounded-full border-4 border-black animate-dot-pulse" />
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 transition-colors duration-200 hover:text-purple-500">
                 {exp.title}
               </h3>
