@@ -19,10 +19,10 @@ const Hero = memo(function Hero() {
         </p>
         <button
           onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-          className={`mt-8 px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-purple-500/40 transition-all no-underline relative overflow-hidden group reveal reveal-delay-2 ${mounted ? 'visible' : ''}`}
+          className={`mt-8 px-6 py-3 bg-white/[0.04] border border-white/10 text-white font-medium rounded-full flex items-center gap-2.5 transition-all hover:bg-white/[0.08] no-underline reveal reveal-delay-2 ${mounted ? 'visible' : ''}`}
         >
-          <span className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 transition-transform duration-300 -translate-x-full group-hover:translate-x-0" />
-          <FiArrowDown className="relative z-10 w-6 h-6" />
+          <span>View My Work</span>
+          <FiArrowDown className="w-4 h-4" />
         </button>
       </div>
       
