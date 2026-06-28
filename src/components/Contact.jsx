@@ -52,7 +52,7 @@ const Contact = memo(function Contact() {
               }
               return (
                 <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer"
-                  className={`${common} bg-white/[0.04] border border-white/10`}
+                  className={`${common} bg-white/[0.04] border border-white/10 no-underline`}
                   style={{ transitionDelay: `${0.3 + i * 0.1}s` }}
                   title={link.label}
                 >
