@@ -1,4 +1,5 @@
 import { memo, useRef } from 'react';
+import { SiReact, SiNodedotjs, SiExpress, SiMongodb, SiSocketdotio, SiTailwindcss, SiPostgresql } from 'react-icons/si';
 import useInView from '../hooks/useInView';
 
 const projects = [
@@ -19,6 +20,16 @@ const projects = [
     color: 'from-blue-600 to-cyan-600'
   },
 ];
+
+const techIcons = {
+  'React.js': SiReact,
+  'Node.js': SiNodedotjs,
+  'Express.js': SiExpress,
+  'MongoDB': SiMongodb,
+  'WebSocket': SiSocketdotio,
+  'Tailwind CSS': SiTailwindcss,
+  'PostgreSQL': SiPostgresql,
+};
 
 const ProjectCard = memo(function ProjectCard({ project, index, inView }) {
   const cardRef = useRef(null);
@@ -69,9 +80,15 @@ const ProjectCard = memo(function ProjectCard({ project, index, inView }) {
           {project.description}
         </p>
         <div className="flex flex-wrap gap-2 mb-4" style={{ transform: 'translateZ(15px)' }}>
-          {project.tech.map((t) => (
-            <span key={t} className="px-2 py-0.5 bg-gray-800 text-gray-300 rounded text-xs">{t}</span>
-          ))}
+          {project.tech.map((t) => {
+            const Icon = techIcons[t];
+            return (
+              <span key={t} className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-800 text-gray-300 rounded text-xs">
+                {Icon && <Icon className="w-3.5 h-3.5 flex-shrink-0" />}
+                {t}
+              </span>
+            );
+          })}
         </div>
         <div className="flex items-center gap-4" onClick={(e) => e.stopPropagation()} style={{ transform: 'translateZ(25px)' }}>
           <a href={project.link} target="_blank" rel="noopener noreferrer"

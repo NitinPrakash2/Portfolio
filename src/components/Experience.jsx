@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import useInView from '../hooks/useInView';
+import { SiReact, SiNodedotjs, SiExpress, SiMongodb, SiPostgresql, SiSocketdotio, SiTailwindcss, SiJavascript, SiPython, SiCplusplus } from 'react-icons/si';
 
 const experiences = [
   { id: 1, title: 'Hackathon Runner-up — GeeksforGeeks', period: '2025',
@@ -25,6 +26,20 @@ const experiences = [
     technologies: ['JavaScript', 'Python', 'C++', 'DSA']
   },
 ];
+
+const techIcons = {
+  'React': SiReact,
+  'React.js': SiReact,
+  'Node.js': SiNodedotjs,
+  'Express.js': SiExpress,
+  'MongoDB': SiMongodb,
+  'PostgreSQL': SiPostgresql,
+  'WebSocket': SiSocketdotio,
+  'Tailwind CSS': SiTailwindcss,
+  'JavaScript': SiJavascript,
+  'Python': SiPython,
+  'C++': SiCplusplus,
+};
 
 const Experience = memo(function Experience() {
   const [sectionRef, inView] = useInView();
@@ -55,11 +70,15 @@ const Experience = memo(function Experience() {
                 </ul>
               )}
               <div className="flex flex-wrap gap-2">
-                {exp.technologies.map((tech) => (
-                  <span key={tech} className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-xs transition-all duration-200 hover:bg-gray-700 hover:scale-105">
-                    {tech}
-                  </span>
-                ))}
+                {exp.technologies.map((tech) => {
+                  const Icon = techIcons[tech];
+                  return (
+                    <span key={tech} className="inline-flex items-center gap-1.5 px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-xs transition-all duration-200 hover:bg-gray-700 hover:scale-105">
+                      {Icon && <Icon className="w-3.5 h-3.5 flex-shrink-0" />}
+                      {tech}
+                    </span>
+                  );
+                })}
               </div>
             </div>
           ))}
