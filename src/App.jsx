@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 
@@ -13,14 +13,17 @@ function SectionFallback() {
 }
 
 export default function App() {
-  const [scrollY, setScrollY] = useState(0);
+  const bgRef = useRef(null);
 
   useEffect(() => {
+    const el = bgRef.current;
+    if (!el) return;
     let ticking = false;
     const handleScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
-          setScrollY(window.scrollY);
+          const opacity = Math.min(window.scrollY / 800, 1);
+          el.style.backgroundColor = `rgb(${10 + Math.round(opacity * 10)}, ${10 + Math.round(opacity * 15)}, ${10 + Math.round(opacity * 40)})`;
           ticking = false;
         });
         ticking = true;
@@ -30,9 +33,6 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const opacity = Math.min(scrollY / 800, 1);
-  const bgColor = `rgb(${10 + Math.round(opacity * 10)}, ${10 + Math.round(opacity * 15)}, ${10 + Math.round(opacity * 40)})`;
-
   return (
     <>
       <Suspense fallback={null}>
@@ -40,8 +40,9 @@ export default function App() {
       </Suspense>
 
       <div
-        style={{ backgroundColor: bgColor }}
+        ref={bgRef}
         className="min-h-screen transition-colors duration-700 relative"
+        style={{ backgroundColor: 'rgb(10, 10, 10)' }}
       >
         <div className="fixed top-1/4 left-1/3 w-[500px] h-[500px] rounded-full bg-purple-600 opacity-[0.04] animate-blob-drift pointer-events-none z-0" />
         <div className="fixed bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-pink-500 opacity-[0.03] animate-blob-breathe pointer-events-none z-0" style={{ animationDelay: '-2s' }} />
