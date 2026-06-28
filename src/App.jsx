@@ -30,8 +30,8 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const opacity = Math.min(scrollY / 600, 1);
-  const bgColor = `rgb(${10 + Math.round(opacity * 25)}, ${10 + Math.round(opacity * 12)}, ${10 + Math.round(opacity * 20)})`;
+  const opacity = Math.min(scrollY / 800, 1);
+  const bgColor = `rgb(${10 + Math.round(opacity * 10)}, ${10 + Math.round(opacity * 15)}, ${10 + Math.round(opacity * 40)})`;
 
   return (
     <>
