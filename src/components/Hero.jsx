@@ -1,4 +1,5 @@
 import { memo, useEffect, useState } from 'react';
+import { FiArrowDown } from 'react-icons/fi';
 
 const Hero = memo(function Hero() {
   const [mounted, setMounted] = useState(false);
@@ -21,7 +22,7 @@ const Hero = memo(function Hero() {
           className={`mt-8 px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-purple-500/40 transition-all no-underline relative overflow-hidden group reveal reveal-delay-2 ${mounted ? 'visible' : ''}`}
         >
           <span className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 transition-transform duration-300 -translate-x-full group-hover:translate-x-0" />
-          <span className="relative z-10">View My Work</span>
+          <FiArrowDown className="relative z-10 w-6 h-6" />
         </button>
       </div>
       
