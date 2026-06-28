@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useRef } from 'react';
 
 const projects = [
   { id: 1, name: 'NeuroDesk',
@@ -20,12 +20,33 @@ const projects = [
 ];
 
 const ProjectCard = memo(function ProjectCard({ project }) {
+  const cardRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    card.style.transform = `perspective(1000px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg)`;
+  };
+
+  const handleMouseLeave = () => {
+    const card = cardRef.current;
+    if (!card) return;
+    card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
+  };
+
   return (
     <div
+      ref={cardRef}
       onClick={() => window.open(project.link, '_blank', 'noopener,noreferrer')}
-      className="group relative overflow-hidden rounded-lg bg-gray-900 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-500/20 animate-fade-in"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="group relative overflow-hidden rounded-lg bg-gray-900 cursor-pointer transition-shadow duration-300 hover:shadow-xl hover:shadow-purple-500/20 animate-fade-in"
+      style={{ transformStyle: 'preserve-3d', transition: 'transform 0.1s ease-out' }}
     >
-      <div className={`aspect-video bg-gradient-to-br ${project.color} relative overflow-hidden`}>
+      <div className={`aspect-video bg-gradient-to-br ${project.color} relative overflow-hidden`} style={{ transformStyle: 'preserve-3d' }}>
         {project.image && (
           <img
             src={project.image}
@@ -39,19 +60,19 @@ const ProjectCard = memo(function ProjectCard({ project }) {
           style={{ background: 'radial-gradient(circle at center, rgba(168, 85, 247, 0.3), transparent 70%)' }}
         />
       </div>
-      <div className="p-6">
-        <h3 className="text-2xl font-bold text-white mb-2 transition-transform duration-200 group-hover:translate-x-1">
+      <div className="p-6" style={{ transformStyle: 'preserve-3d' }}>
+        <h3 className="text-2xl font-bold text-white mb-2" style={{ transform: 'translateZ(30px)' }}>
           {project.name}
         </h3>
-        <p className="text-gray-400 text-sm leading-relaxed mb-4 transition-transform duration-200 group-hover:translate-x-1">
+        <p className="text-gray-400 text-sm leading-relaxed mb-4" style={{ transform: 'translateZ(20px)' }}>
           {project.description}
         </p>
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-2 mb-4" style={{ transform: 'translateZ(15px)' }}>
           {project.tech.map((t) => (
             <span key={t} className="px-2 py-0.5 bg-gray-800 text-gray-300 rounded text-xs">{t}</span>
           ))}
         </div>
-        <div className="flex items-center gap-4" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center gap-4" onClick={(e) => e.stopPropagation()} style={{ transform: 'translateZ(25px)' }}>
           <a href={project.link} target="_blank" rel="noopener noreferrer"
              className="inline-flex items-center gap-1 text-sm text-purple-400 hover:text-purple-300 transition-colors">
             Live Demo <span className="text-lg">→</span>
@@ -63,7 +84,7 @@ const ProjectCard = memo(function ProjectCard({ project }) {
             </a>
           )}
         </div>
-        <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+        <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center" style={{ transform: 'translateZ(35px)' }}>
           <span className="text-white text-xl">↗</span>
         </div>
       </div>
