@@ -19,6 +19,7 @@ const projects = [
     description: 'AI-powered resume analyzer that evaluates resumes against job descriptions using multiple AI providers. Features ATS scoring, missing keyword detection, job matching via Adzuna API, user-configurable API keys, and interview preparation tools.',
     tech: ['React.js', 'Node.js', 'Express.js', 'PostgreSQL', 'Sequelize ORM', 'Gemini AI', 'JWT'],
     link: 'https://resume-ai-checker-two.vercel.app/',
+    github: 'https://github.com/NitinPrakash2/Resume_AI_Checker',
     image: '/projects/resumate.png',
     color: 'from-blue-600 to-cyan-600'
   },
