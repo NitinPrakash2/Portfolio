@@ -18,7 +18,7 @@ export default function App() {
   const contentRef = useRef(null);
   const blob1Ref = useRef(null);
   const blob2Ref = useRef(null);
-  const { gamma, beta } = useDeviceOrientation();
+  const { gamma } = useDeviceOrientation();
 
   useEffect(() => {
     const el = bgRef.current;
@@ -39,17 +39,16 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const rotateX = beta * 0.03;
     const rotateY = gamma * 0.03;
 
     if (contentRef.current) {
-      contentRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      contentRef.current.style.transform = `perspective(1000px) rotateY(${rotateY}deg)`;
     }
     if (blob1Ref.current) {
-      blob1Ref.current.style.transform = `translate(${gamma * 0.15}px, ${beta * 0.1}px)`;
+      blob1Ref.current.style.transform = `translateX(${gamma * 0.15}px)`;
     }
     if (blob2Ref.current) {
-      blob2Ref.current.style.transform = `translate(${gamma * -0.2}px, ${beta * -0.15}px)`;
+      blob2Ref.current.style.transform = `translateX(${gamma * -0.2}px)`;
     }
   }, [gamma, beta]);
 
