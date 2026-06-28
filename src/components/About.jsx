@@ -1,24 +1,29 @@
 import { memo } from 'react';
 import useInView from '../hooks/useInView';
+import {
+  SiJavascript, SiPython, SiC, SiCplusplus, SiHtml5, SiCss,
+  SiReact, SiTailwindcss, SiNodedotjs, SiExpress, SiMongodb,
+  SiMysql, SiPostgresql, SiRedux, SiGit, SiGithub, SiSocketdotio,
+} from 'react-icons/si';
 
 const skills = [
-  { name: 'JavaScript', icon: 'javascript' },
-  { name: 'Python', icon: 'python' },
-  { name: 'C', icon: 'c' },
-  { name: 'C++', icon: 'cplusplus' },
-  { name: 'HTML5', icon: 'html5' },
-  { name: 'CSS3', icon: 'css3' },
-  { name: 'React.js', icon: 'react' },
-  { name: 'Tailwind CSS', icon: 'tailwindcss' },
-  { name: 'Node.js', icon: 'nodedotjs' },
-  { name: 'Express.js', icon: 'express' },
-  { name: 'MongoDB', icon: 'mongodb' },
-  { name: 'MySQL', icon: 'mysql' },
-  { name: 'PostgreSQL', icon: 'postgresql' },
-  { name: 'Redux Toolkit', icon: 'redux' },
-  { name: 'Git', icon: 'git' },
-  { name: 'GitHub', icon: 'github' },
-  { name: 'Socket.io', icon: 'socketdotio' },
+  { name: 'JavaScript', icon: SiJavascript },
+  { name: 'Python', icon: SiPython },
+  { name: 'C', icon: SiC },
+  { name: 'C++', icon: SiCplusplus },
+  { name: 'HTML5', icon: SiHtml5 },
+  { name: 'CSS3', icon: SiCss },
+  { name: 'React.js', icon: SiReact },
+  { name: 'Tailwind CSS', icon: SiTailwindcss },
+  { name: 'Node.js', icon: SiNodedotjs },
+  { name: 'Express.js', icon: SiExpress },
+  { name: 'MongoDB', icon: SiMongodb },
+  { name: 'MySQL', icon: SiMysql },
+  { name: 'PostgreSQL', icon: SiPostgresql },
+  { name: 'Redux Toolkit', icon: SiRedux },
+  { name: 'Git', icon: SiGit },
+  { name: 'GitHub', icon: SiGithub },
+  { name: 'Socket.io', icon: SiSocketdotio },
 ];
 
 const About = memo(function About() {
@@ -47,7 +52,7 @@ const About = memo(function About() {
               className={`inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-800 text-white rounded-full text-xs sm:text-sm font-medium cursor-pointer transition-all duration-200 hover:bg-purple-700 hover:scale-105 hover:rotate-[4deg] active:rotate-[-4deg] skill-tag ${inView ? 'visible' : ''}`}
               style={{ transitionDelay: `${0.3 + i * 0.04}s` }}
             >
-              <img src={`https://cdn.simpleicons.org/${skill.icon}/white`} alt={skill.name} className="w-4 h-4" loading="lazy" />
+              <skill.icon className="w-4 h-4 shrink-0" />
               {skill.name}
             </span>
           ))}
