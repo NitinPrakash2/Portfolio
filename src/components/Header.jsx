@@ -102,7 +102,7 @@ const Header = () => {
       {mobileMenuOpen && createPortal(
         <div
           onClick={() => setMobileMenuOpen(false)}
-          className="fixed inset-0 bg-black/70 z-40 md:hidden animate-fade-in"
+          className="fixed inset-0 bg-black/40 backdrop-blur-lg z-40 md:hidden animate-fade-in"
         >
           <div className="relative h-full flex flex-col">
             <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-600 rounded-full opacity-20 animate-blob" />
