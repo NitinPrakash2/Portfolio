@@ -1,7 +1,25 @@
 import { memo } from 'react';
 import useInView from '../hooks/useInView';
 
-const skills = ['JavaScript', 'Python', 'C', 'C++', 'HTML5', 'CSS3', 'React.js', 'Tailwind CSS', 'Node.js', 'Express.js', 'MongoDB', 'MySQL', 'PostgreSQL', 'Redux Toolkit', 'Git', 'GitHub', 'Socket.io'];
+const skills = [
+  { name: 'JavaScript', icon: 'javascript' },
+  { name: 'Python', icon: 'python' },
+  { name: 'C', icon: 'c' },
+  { name: 'C++', icon: 'cplusplus' },
+  { name: 'HTML5', icon: 'html5' },
+  { name: 'CSS3', icon: 'css3' },
+  { name: 'React.js', icon: 'react' },
+  { name: 'Tailwind CSS', icon: 'tailwindcss' },
+  { name: 'Node.js', icon: 'nodedotjs' },
+  { name: 'Express.js', icon: 'express' },
+  { name: 'MongoDB', icon: 'mongodb' },
+  { name: 'MySQL', icon: 'mysql' },
+  { name: 'PostgreSQL', icon: 'postgresql' },
+  { name: 'Redux Toolkit', icon: 'redux' },
+  { name: 'Git', icon: 'git' },
+  { name: 'GitHub', icon: 'github' },
+  { name: 'Socket.io', icon: 'socketdotio' },
+];
 
 const About = memo(function About() {
   const [sectionRef, inView] = useInView();
@@ -25,11 +43,12 @@ const About = memo(function About() {
         <div className="flex flex-wrap gap-3 justify-center max-w-3xl mx-auto">
           {skills.map((skill, i) => (
             <span 
-              key={skill} 
-              className={`px-3 py-1.5 bg-gray-800 text-white rounded-full text-xs sm:text-sm font-medium cursor-pointer transition-all duration-200 hover:bg-purple-700 hover:scale-105 hover:rotate-[4deg] active:rotate-[-4deg] skill-tag ${inView ? 'visible' : ''}`}
+              key={skill.name} 
+              className={`inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-800 text-white rounded-full text-xs sm:text-sm font-medium cursor-pointer transition-all duration-200 hover:bg-purple-700 hover:scale-105 hover:rotate-[4deg] active:rotate-[-4deg] skill-tag ${inView ? 'visible' : ''}`}
               style={{ transitionDelay: `${0.3 + i * 0.04}s` }}
             >
-              {skill}
+              <img src={`https://cdn.simpleicons.org/${skill.icon}/white`} alt={skill.name} className="w-4 h-4" loading="lazy" />
+              {skill.name}
             </span>
           ))}
         </div>
