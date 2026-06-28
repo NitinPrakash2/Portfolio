@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo } from 'react';
 import useInView from '../hooks/useInView';
 import { SiGmail } from 'react-icons/si';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
@@ -10,14 +10,13 @@ const SOCIAL_LINKS = [
 ];
 
 const CONTACT_LINKS = [
-  { href: 'mailto:nitinprakash268@gmail.com', icon: SiGmail, label: 'Email', isCopy: true },
+  { href: 'mailto:nitinprakash268@gmail.com', icon: SiGmail, label: 'Email' },
   { href: 'https://www.linkedin.com/in/nitin-prakash-3b8a01373/', icon: FaLinkedin, label: 'LinkedIn' },
   { href: 'https://github.com/NitinPrakash2', icon: FaGithub, label: 'GitHub' },
   { href: 'tel:+919304701381', icon: FiPhone, label: 'Phone' },
 ];
 
 const Contact = memo(function Contact() {
-  const [copied, setCopied] = useState(false);
   const [sectionRef, inView] = useInView();
   const [footerRef, footerInView] = useInView();
 
@@ -38,18 +37,7 @@ const Contact = memo(function Contact() {
               const common = `relative w-10 h-10 rounded-full flex items-center justify-center reveal ${inView ? 'visible' : ''}`;
               const iconClass = "w-5 h-5 relative z-10";
 
-              if (link.isCopy) {
-                return (
-                  <button key={link.label}
-                    onClick={() => { navigator.clipboard.writeText('nitinprakash268@gmail.com'); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
-                    className={`${common} bg-purple-600/10 border border-purple-500/30`}
-                    style={{ transitionDelay: `${0.3 + i * 0.1}s` }}
-                    title={copied ? 'Copied!' : link.label}
-                  >
-                    <link.icon className={iconClass} />
-                  </button>
-                );
-              }
+
               return (
                 <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer"
                   className={`${common} bg-white/[0.04] border border-white/10 no-underline`}
