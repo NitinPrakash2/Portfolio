@@ -21,10 +21,15 @@ const Header = () => {
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     }
-    return () => { document.body.style.overflow = ''; };
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
   }, [mobileMenuOpen]);
 
   const scrollToSection = (id) => {
@@ -102,7 +107,8 @@ const Header = () => {
       {mobileMenuOpen && createPortal(
         <div
           onClick={() => setMobileMenuOpen(false)}
-          className="fixed inset-0 bg-black/40 backdrop-blur-lg z-40 md:hidden animate-fade-in"
+          className="fixed inset-0 z-40 md:hidden animate-fade-in"
+          style={{ backgroundColor: 'rgba(0,0,0,0.6)', WebkitBackdropFilter: 'blur(12px)', backdropFilter: 'blur(12px)' }}
         >
           <div className="relative h-full flex flex-col">
             <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-600 rounded-full opacity-20 animate-blob" />
