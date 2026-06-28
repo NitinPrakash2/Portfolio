@@ -39,7 +39,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const rotateY = gamma * 0.03;
+    const rotateY = (gamma || 0) * 0.03;
 
     if (contentRef.current) {
       contentRef.current.style.transform = `perspective(1000px) rotateY(${rotateY}deg)`;
