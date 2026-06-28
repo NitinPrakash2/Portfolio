@@ -1,4 +1,3 @@
-import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -22,15 +21,10 @@ const Header = () => {
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
-      document.body.style.touchAction = 'none';
     } else {
       document.body.style.overflow = '';
-      document.body.style.touchAction = '';
     }
-    return () => {
-      document.body.style.overflow = '';
-      document.body.style.touchAction = '';
-    };
+    return () => { document.body.style.overflow = ''; };
   }, [mobileMenuOpen]);
 
   const scrollToSection = (id) => {
@@ -46,14 +40,10 @@ const Header = () => {
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-lg transition-all duration-300`}
-    >
-      <div
-        className={`absolute inset-0 bg-black/70 border-b transition-all duration-300 ${
-          isScrolled || mobileMenuOpen ? 'border-purple-500/30' : 'border-transparent'
-        }`}
-      />
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg">
+      <div className={`absolute inset-0 bg-black/70 border-b transition-all duration-300 ${
+        isScrolled || mobileMenuOpen ? 'border-purple-500/30' : 'border-transparent'
+      }`} />
       
       <div className="px-4 sm:px-6 py-4 relative z-10">
         <div className="flex items-center justify-between">
@@ -97,9 +87,7 @@ const Header = () => {
             <svg 
               className="w-5 h-5 text-white transition-transform duration-300"
               style={{ transform: mobileMenuOpen ? 'rotate(90deg)' : 'rotate(0)' }}
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" viewBox="0 0 24 24"
             >
               {mobileMenuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -112,17 +100,13 @@ const Header = () => {
       </div>
 
       {mobileMenuOpen && createPortal(
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.25 }}
+        <div
           onClick={() => setMobileMenuOpen(false)}
-          className="fixed inset-0 bg-black/70 z-40 md:hidden"
+          className="fixed inset-0 bg-black/70 z-40 md:hidden animate-fade-in"
         >
           <div className="relative h-full flex flex-col">
-            <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-600 rounded-full opacity-20" />
-            <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-pink-600 rounded-full opacity-20" />
+            <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-600 rounded-full opacity-20 animate-blob" />
+            <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-pink-600 rounded-full opacity-20 animate-blob" style={{ animationDelay: '-4s' }} />
             
             <div className="flex items-center justify-between px-6 pt-6 pb-4 relative z-10">
               <span className="text-lg font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
@@ -140,19 +124,16 @@ const Header = () => {
 
             <div className="flex-1 flex flex-col justify-center px-6 relative z-10">
               <nav className="space-y-1">
-                {navItems.map((item, i) => (
-                  <motion.button
+                {navItems.map((item) => (
+                  <button
                     key={item.id}
-                    initial={{ opacity: 0, x: 60 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.15 + i * 0.08, duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
                     onClick={() => scrollToSection(item.id)}
                     className="group relative w-full text-left py-4 px-4 rounded-xl text-white/70 hover:text-white transition-all"
                   >
                     <span className="relative z-10 text-lg font-medium tracking-wide">{item.name}</span>
                     <span className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 rounded-full bg-gradient-to-b from-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 group-hover:h-8 transition-all duration-300" />
                     <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-500/10 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </motion.button>
+                  </button>
                 ))}
               </nav>
             </div>
@@ -167,7 +148,7 @@ const Header = () => {
               </button>
             </div>
           </div>
-        </motion.div>,
+        </div>,
         document.body
       )}
     </header>

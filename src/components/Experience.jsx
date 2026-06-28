@@ -1,21 +1,14 @@
-import { motion } from 'framer-motion';
 import { memo } from 'react';
 
 const experiences = [
-  { 
-    id: 1, 
-    title: 'Hackathon Runner-up — GeeksforGeeks', 
-    period: '2025',
+  { id: 1, title: 'Hackathon Runner-up — GeeksforGeeks', period: '2025',
     description: [
       'Secured 2nd position in a hackathon organized by GeeksforGeeks for developing an innovative, problem-solving based project.',
       'Demonstrated strong teamwork, rapid prototyping, and technical skills under competitive time constraints.'
     ],
     technologies: ['React', 'Node.js', 'MongoDB', 'Teamwork']
   },
-  { 
-    id: 2, 
-    title: 'Full Stack Developer — Self Projects', 
-    period: '2024–Present',
+  { id: 2, title: 'Full Stack Developer — Self Projects', period: '2024–Present',
     description: [
       'Built NeuroDesk: Full-stack AI-powered productivity app with real-time data sync, JWT auth, task/goal/note management, and multi-provider AI integration.',
       'Built Resumate: AI-powered resume analyzer with ATS scoring, job matching, and multi-AI provider support.',
@@ -23,10 +16,7 @@ const experiences = [
     ],
     technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'PostgreSQL', 'WebSocket', 'JWT', 'Tailwind CSS']
   },
-  { 
-    id: 3, 
-    title: 'Competitive Programming & Problem Solving', 
-    period: 'Ongoing',
+  { id: 3, title: 'Competitive Programming & Problem Solving', period: 'Ongoing',
     description: [
       'Actively participate in hackathons and coding competitions to sharpen analytical and problem-solving skills.',
       'Runner-up in multiple hackathons for developing innovative solutions.'
@@ -38,33 +28,17 @@ const experiences = [
 const Experience = memo(function Experience() {
   return (
     <section className="bg-transparent py-16 sm:py-20 px-4 sm:px-6 relative">
-      <div 
-        className="absolute top-1/2 right-0 w-96 h-96 bg-purple-600 rounded-full opacity-10 pointer-events-none animate-blob"
-        style={{ animationDuration: '6s' }}
-      />
+      <div className="absolute top-1/2 right-0 w-96 h-96 bg-purple-600 rounded-full opacity-10 pointer-events-none animate-blob" style={{ animationDuration: '6s' }} />
       
       <div className="max-w-6xl mx-auto relative z-10">
-        <motion.h2 
-          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12 animate-fade-in">
           Experience
-        </motion.h2>
+        </h2>
         <div className="border-l-2 border-gray-700 pl-6 sm:pl-8 space-y-10 sm:space-y-12 relative">
           <div className="absolute left-0 top-0 w-0.5 bg-gradient-to-b from-purple-500 to-transparent" />
           
           {experiences.map((exp, i) => (
-            <motion.div 
-              key={exp.id} 
-              className="relative hover:translate-x-2 transition-transform duration-300"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.2, duration: 0.5 }}
-            >
+            <div key={exp.id} className="relative hover:translate-x-2 transition-transform duration-300 animate-fade-in" style={{ animationDelay: `${i * 0.15}s` }}>
               <div className="absolute -left-[29px] sm:-left-[37px] top-2 w-3 h-3 sm:w-4 sm:h-4 bg-purple-500 rounded-full border-4 border-black animate-dot-pulse" />
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 transition-colors duration-200 hover:text-purple-500">
                 {exp.title}
@@ -79,15 +53,12 @@ const Experience = memo(function Experience() {
               )}
               <div className="flex flex-wrap gap-2">
                 {exp.technologies.map((tech) => (
-                  <span 
-                    key={tech} 
-                    className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-xs transition-all duration-200 hover:bg-gray-700 hover:scale-105"
-                  >
+                  <span key={tech} className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-xs transition-all duration-200 hover:bg-gray-700 hover:scale-105">
                     {tech}
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
