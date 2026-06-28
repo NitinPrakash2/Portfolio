@@ -4,6 +4,11 @@ import { SiGmail } from 'react-icons/si';
 import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { FiPhone } from 'react-icons/fi';
 
+const SOCIAL_LINKS = [
+  { href: 'https://www.linkedin.com/in/nitin-prakash-3b8a01373/', label: 'LinkedIn' },
+  { href: 'https://github.com/NitinPrakash2', label: 'GitHub' },
+];
+
 const CONTACT_LINKS = [
   { href: 'mailto:nitinprakash268@gmail.com', icon: SiGmail, label: 'Email', isCopy: true },
   { href: 'https://www.linkedin.com/in/nitin-prakash-3b8a01373/', icon: FaLinkedin, label: 'LinkedIn' },
