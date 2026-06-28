@@ -47,7 +47,7 @@ const Header = () => {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50"
+      className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-lg transition-all duration-300`}
     >
       <div
         className={`absolute inset-0 bg-black/70 border-b transition-all duration-300 ${
