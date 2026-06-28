@@ -42,7 +42,7 @@ const Contact = memo(function Contact() {
                 return (
                   <button key={link.label}
                     onClick={() => { navigator.clipboard.writeText('nitinprakash268@gmail.com'); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
-                    className={`${common} bg-purple-600/10 border border-purple-500/30 hover:bg-purple-600/20 hover:border-purple-500/60`}
+                    className={`${common} bg-purple-600/10 border border-purple-500/30 hover:bg-purple-600/20`}
                     style={{ transitionDelay: `${0.3 + i * 0.1}s` }}
                     title={copied ? 'Copied!' : link.label}
                   >
@@ -52,7 +52,7 @@ const Contact = memo(function Contact() {
               }
               return (
                 <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer"
-                  className={`${common} bg-white/[0.04] border border-white/10 hover:border-purple-500/40 hover:bg-white/[0.08]`}
+                  className={`${common} bg-white/[0.04] border border-white/10 hover:bg-white/[0.08]`}
                   style={{ transitionDelay: `${0.3 + i * 0.1}s` }}
                   title={link.label}
                 >
