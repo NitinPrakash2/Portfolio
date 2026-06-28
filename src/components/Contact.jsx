@@ -35,14 +35,14 @@ const Contact = memo(function Contact() {
           </p>
           <div className="flex flex-wrap justify-center gap-5 sm:gap-6">
             {CONTACT_LINKS.map((link, i) => {
-              const common = `relative w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 hover:shadow-md hover:shadow-purple-500/20 reveal ${inView ? 'visible' : ''}`;
+              const common = `relative w-10 h-10 rounded-full flex items-center justify-center reveal ${inView ? 'visible' : ''}`;
               const iconClass = "w-5 h-5 relative z-10";
 
               if (link.isCopy) {
                 return (
                   <button key={link.label}
                     onClick={() => { navigator.clipboard.writeText('nitinprakash268@gmail.com'); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
-                    className={`${common} bg-purple-600/10 border border-purple-500/30 hover:bg-purple-600/20`}
+                    className={`${common} bg-purple-600/10 border border-purple-500/30`}
                     style={{ transitionDelay: `${0.3 + i * 0.1}s` }}
                     title={copied ? 'Copied!' : link.label}
                   >
@@ -52,7 +52,7 @@ const Contact = memo(function Contact() {
               }
               return (
                 <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer"
-                  className={`${common} bg-white/[0.04] border border-white/10 hover:bg-white/[0.08]`}
+                  className={`${common} bg-white/[0.04] border border-white/10`}
                   style={{ transitionDelay: `${0.3 + i * 0.1}s` }}
                   title={link.label}
                 >
