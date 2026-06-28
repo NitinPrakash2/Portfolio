@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import useInView from '../hooks/useInView';
 
 const experiences = [
   { id: 1, title: 'Hackathon Runner-up — GeeksforGeeks', period: '2025',
@@ -26,19 +27,21 @@ const experiences = [
 ];
 
 const Experience = memo(function Experience() {
+  const [sectionRef, inView] = useInView();
+
   return (
-    <section className="bg-transparent py-16 sm:py-20 px-4 sm:px-6 relative">
+    <section ref={sectionRef} className="bg-transparent py-16 sm:py-20 px-4 sm:px-6 relative">
       <div className="absolute top-1/2 right-0 w-96 h-96 bg-purple-600 rounded-full opacity-10 pointer-events-none animate-blob" style={{ animationDuration: '6s' }} />
       
       <div className="max-w-6xl mx-auto relative z-10">
-        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12 animate-fade-in">
+        <h2 className={`text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12 reveal ${inView ? 'visible' : ''}`}>
           Experience
         </h2>
         <div className="border-l-2 border-gray-700 pl-6 sm:pl-8 space-y-10 sm:space-y-12 relative">
           <div className="absolute left-0 top-0 w-0.5 bg-gradient-to-b from-purple-500 to-transparent" />
           
           {experiences.map((exp, i) => (
-            <div key={exp.id} className="relative hover:translate-x-2 transition-transform duration-300 animate-fade-in" style={{ animationDelay: `${i * 0.15}s` }}>
+            <div key={exp.id} className={`relative hover:translate-x-2 transition-transform duration-300 reveal reveal-left ${inView ? 'visible' : ''}`} style={{ transitionDelay: `${0.1 + i * 0.2}s` }}>
               <div className="absolute -left-[29px] sm:-left-[37px] top-2 w-3 h-3 sm:w-4 sm:h-4 bg-purple-500 rounded-full border-4 border-black animate-dot-pulse" />
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 transition-colors duration-200 hover:text-purple-500">
                 {exp.title}

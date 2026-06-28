@@ -1,4 +1,5 @@
 import { memo, useRef } from 'react';
+import useInView from '../hooks/useInView';
 
 const projects = [
   { id: 1, name: 'NeuroDesk',
@@ -19,7 +20,7 @@ const projects = [
   },
 ];
 
-const ProjectCard = memo(function ProjectCard({ project }) {
+const ProjectCard = memo(function ProjectCard({ project, index, inView }) {
   const cardRef = useRef(null);
 
   const handleMouseMove = (e) => {
@@ -43,8 +44,8 @@ const ProjectCard = memo(function ProjectCard({ project }) {
       onClick={() => window.open(project.link, '_blank', 'noopener,noreferrer')}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="group relative overflow-hidden rounded-lg bg-gray-900 cursor-pointer transition-shadow duration-300 hover:shadow-xl hover:shadow-purple-500/20 animate-fade-in"
-      style={{ transformStyle: 'preserve-3d', transition: 'transform 0.1s ease-out' }}
+      className={`group relative overflow-hidden rounded-lg bg-gray-900 cursor-pointer transition-shadow duration-300 hover:shadow-xl hover:shadow-purple-500/20 reveal ${inView ? 'visible' : ''}`}
+      style={{ transformStyle: 'preserve-3d', transitionDelay: `${0.1 + index * 0.15}s`, transition: 'transform 0.1s ease-out, opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1)' }}
     >
       <div className={`aspect-video bg-gradient-to-br ${project.color} relative overflow-hidden`} style={{ transformStyle: 'preserve-3d' }}>
         {project.image && (
@@ -93,15 +94,17 @@ const ProjectCard = memo(function ProjectCard({ project }) {
 });
 
 const Projects = memo(function Projects() {
+  const [sectionRef, inView] = useInView();
+
   return (
-    <section className="bg-transparent py-16 sm:py-20 px-6 sm:px-8">
+    <section ref={sectionRef} className="bg-transparent py-16 sm:py-20 px-6 sm:px-8">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12 animate-fade-in">
+        <h2 className={`text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12 reveal ${inView ? 'visible' : ''}`}>
           Featured Projects
         </h2>
         <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
           {projects.map((project, i) => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard key={project.id} project={project} index={i} inView={inView} />
           ))}
         </div>
       </div>
