@@ -41,10 +41,14 @@ export default function App() {
 
       <div
         style={{ backgroundColor: bgColor }}
-        className="min-h-screen transition-colors duration-700"
+        className="min-h-screen transition-colors duration-700 relative"
       >
+        <div className="fixed inset-0 bg-noise z-0" />
+        <div className="fixed top-1/4 left-1/3 w-[500px] h-[500px] rounded-full bg-purple-600 opacity-[0.06] animate-blob-drift blur-3xl pointer-events-none z-0" />
+        <div className="fixed bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-pink-500 opacity-[0.05] animate-blob-breathe blur-3xl pointer-events-none z-0" style={{ animationDelay: '-2s' }} />
+        <div className="fixed top-1/3 right-1/3 w-[350px] h-[350px] rounded-full bg-blue-500 opacity-[0.04] animate-blob-drift blur-3xl pointer-events-none z-0" style={{ animationDuration: '15s', animationDelay: '-5s' }} />
         <Header />
-        <main>
+        <main className="relative z-10">
           <Hero />
           <div id="about">
             <Suspense fallback={<SectionFallback />}>

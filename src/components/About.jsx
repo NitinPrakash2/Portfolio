@@ -16,6 +16,8 @@ const About = memo(function About() {
       </div>
       <div className="absolute -top-20 -left-20 w-72 h-72 bg-blue-600 rounded-full opacity-20 pointer-events-none animate-blob" style={{ animationDuration: '10s' }} />
       <div className="absolute bottom-20 right-20 w-64 h-64 bg-purple-600 rounded-full opacity-20 pointer-events-none animate-blob" style={{ animationDuration: '12s', animationDelay: '-3s' }} />
+      <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-pink-500 rounded-full opacity-[0.15] pointer-events-none animate-blob-breathe blur-xl" style={{ animationDelay: '-5s' }} />
+      <div className="absolute top-1/3 right-1/4 w-56 h-56 bg-cyan-500 rounded-full opacity-[0.1] pointer-events-none animate-blob-drift blur-xl" style={{ animationDuration: '14s', animationDelay: '-2s' }} />
       
       <div className="max-w-6xl mx-auto relative z-10">
         <h2 className={`text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12 reveal ${inView ? 'visible' : ''}`}>

@@ -22,6 +22,8 @@ const Contact = memo(function Contact() {
     <>
       <section ref={sectionRef} className="bg-transparent py-16 sm:py-20 px-6 sm:px-8 relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-purple-600 rounded-full opacity-20 pointer-events-none animate-blob" style={{ animationDuration: '7s' }} />
+        <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-blue-500 rounded-full opacity-[0.12] pointer-events-none animate-blob-drift blur-2xl" style={{ animationDuration: '13s', animationDelay: '-3s' }} />
+        <div className="absolute top-1/3 right-1/4 w-48 h-48 bg-pink-500 rounded-full opacity-[0.1] pointer-events-none animate-blob-breathe blur-xl" style={{ animationDelay: '-6s' }} />
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <h2 className={`text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 reveal ${inView ? 'visible' : ''}`}>
