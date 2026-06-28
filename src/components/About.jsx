@@ -13,9 +13,9 @@ const About = memo(function About() {
         }} />
       </div>
       
-      <div className="absolute -top-20 -left-20 w-72 h-72 bg-blue-600 rounded-full opacity-20 pointer-events-none" />
+      <div className="absolute -top-20 -left-20 w-72 h-72 bg-blue-600 rounded-full opacity-20 pointer-events-none animate-blob" style={{ animationDuration: '10s' }} />
       
-      <div className="absolute bottom-20 right-20 w-64 h-64 bg-purple-600 rounded-full opacity-20 pointer-events-none" />
+      <div className="absolute bottom-20 right-20 w-64 h-64 bg-purple-600 rounded-full opacity-20 pointer-events-none animate-blob" style={{ animationDuration: '12s', animationDelay: '-3s' }} />
       
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.h2 
@@ -40,7 +40,7 @@ const About = memo(function About() {
           {skills.map((skill) => (
             <span 
               key={skill} 
-              className="px-3 py-1.5 bg-gray-800 text-white rounded-full text-xs sm:text-sm font-medium cursor-pointer transition-all duration-200 hover:bg-purple-700 hover:scale-105"
+              className="px-3 py-1.5 bg-gray-800 text-white rounded-full text-xs sm:text-sm font-medium cursor-pointer transition-all duration-200 hover:bg-purple-700 hover:scale-105 hover:rotate-[4deg] active:rotate-[-4deg]"
             >
               {skill}
             </span>

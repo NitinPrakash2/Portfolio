@@ -39,7 +39,8 @@ const Experience = memo(function Experience() {
   return (
     <section className="bg-transparent py-16 sm:py-20 px-4 sm:px-6 relative">
       <div 
-        className="absolute top-1/2 right-0 w-96 h-96 bg-purple-600 rounded-full opacity-10 pointer-events-none"
+        className="absolute top-1/2 right-0 w-96 h-96 bg-purple-600 rounded-full opacity-10 pointer-events-none animate-blob"
+        style={{ animationDuration: '6s' }}
       />
       
       <div className="max-w-6xl mx-auto relative z-10">
@@ -58,13 +59,13 @@ const Experience = memo(function Experience() {
           {experiences.map((exp, i) => (
             <motion.div 
               key={exp.id} 
-              className="relative"
+              className="relative hover:translate-x-2 transition-transform duration-300"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.2, duration: 0.5 }}
             >
-              <div className="absolute -left-[29px] sm:-left-[37px] top-2 w-3 h-3 sm:w-4 sm:h-4 bg-purple-500 rounded-full border-4 border-black" />
+              <div className="absolute -left-[29px] sm:-left-[37px] top-2 w-3 h-3 sm:w-4 sm:h-4 bg-purple-500 rounded-full border-4 border-black animate-dot-pulse" />
               <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 transition-colors duration-200 hover:text-purple-500">
                 {exp.title}
               </h3>

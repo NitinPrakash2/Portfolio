@@ -20,7 +20,8 @@ const Contact = memo(function Contact() {
     <>
       <section className="bg-transparent py-16 sm:py-20 px-6 sm:px-8 relative overflow-hidden">
         <div 
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-purple-600 rounded-full opacity-20 pointer-events-none"
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-purple-600 rounded-full opacity-20 pointer-events-none animate-blob"
+          style={{ animationDuration: '7s' }}
         />
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
